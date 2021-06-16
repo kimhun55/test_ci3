@@ -14,7 +14,7 @@ class Login extends CI_Controller {
     public function index(){
 
 		if(@$this->session->userdata('logged_in') === true ){
-			redirect('dashboard_view');
+			redirect('dashboard');
 			exit();
 
 		}
@@ -32,7 +32,7 @@ class Login extends CI_Controller {
 		}
 		else
 		{
-			redirect('dashboard_view');	
+			redirect('dashboard');	
 			exit();
 		}
 		
@@ -41,13 +41,14 @@ class Login extends CI_Controller {
 
 	public function login_check($str)
 	{
-			$data = $this->admin->check_login($str);
+			$data = $this->login->check_login($str);
 			if ($data)
 			{
 					$newdata = array(
 							'email'  => $data['email'],
 							'firstname'		=> $data['firstname'],
-							'lastname'     => $data['lastname']
+							'lastname'     => $data['lastname'],
+                            'logged_in' => true
 					);
 					
 					$this->session->set_userdata($newdata);

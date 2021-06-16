@@ -13,7 +13,7 @@
 
 <div class="container">
 
-            <form>
+            <form method="POST" action="<?php echo site_url('login');?>">
                 <br>
                 <br>
                 <h1>Login</h1>
