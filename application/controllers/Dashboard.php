@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Register extends CI_Controller {
+class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		echo "register";
+		$this->load->view('welcome_message');
 	}
 }
