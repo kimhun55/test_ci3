@@ -8,12 +8,24 @@ class Register extends CI_Controller {
 		$this->load->view('register_view');
 	}
 
+    public function check(){
+        $email = $this->input->get('email');
+        $this->db->where('email',$email);
+        $query = $this->db->get('register');
+        $row = $query->num_rows();
+        if($row > 0){
+            echo  1;
+        }else{
+            echo 0;
+        }
+    }
+
 
     public function save(){
         $this->load->model('register_model','register');
         $data = array(
             'email' => $this->input->post('email'),
-            'password' => $this->input->post('password'),
+            'password' => md5($this->input->post('password')),
             'firstname' => $this->input->post('firstname'),
             'lastname' => $this->input->post('lastname'),
         );
